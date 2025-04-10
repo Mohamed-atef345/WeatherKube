@@ -1,0 +1,12 @@
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: weatherapp-service
+spec:
+  selector:
+    apps.k8s.io/name: weatherapp
+  ports:
+    - port: 5000
+      targetPort: http
+      protocol: TCP
+  type: ClusterIP

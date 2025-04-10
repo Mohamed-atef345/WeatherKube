@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: weatherapp
+spec:
+  selector:
+    matchLabels:
+      apps.k8s.io/name: weatherapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        apps.k8s.io/name: weatherapp
+    spec:
+      containers:
+        - name: weatherapp
+          image: mohamedcloud/weatherapp_app:v1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: weatherapi-key
+                  key: apikey 
+          ports:
+            - name: http 
+              containerPort: 5000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe: 
+            httpGet:
+                path: /
+                port: http

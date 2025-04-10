@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: authentication-weatherapp
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app.k8s.io/name: authentication-weatherapp
+  template: 
+    metadata:
+      labels:
+        app.k8s.io/name: authentication-weatherapp
+    spec: 
+      containers:
+        - name: authentication-weatherapp
+          image: afakharany/weatherapp-auth:lab
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: mysql-service
+            - name: DB_USER
+              value: authuser
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: auth-password
+            - name: DB_NAME
+              value: weatherapp
+            - name: DB_PORT
+              value: "3306"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: secret-key
+
+
+
+
