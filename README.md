@@ -71,8 +71,12 @@ kubectl create secret generic weatherapi-key --from-literal=apikey=<your-apikey>
 
 ### 3. TLS Secret for UI
 
-To enable HTTPS for the UI, create the TLS secret:
+To enable HTTPS for the UI, create the TLS secret but first you will need to create the TLS certificate and key :
 
+```bash
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key \
+-out tls.crt -subj "/CN=weatherapp.local/0=weatherapp"
+```
 ```bash
 kubectl create secret tls weatherapp-ui-tls-cert \
   --cert=k8s/UI/tls.crt \
