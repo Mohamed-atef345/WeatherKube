@@ -4,16 +4,16 @@
 
 ---
 
-## 📦 Table of Contents
+##  Table of Contents
 
-- [🛠️ Setting Up kind Cluster](#️-setting-up-kind-cluster)
-- [🚀 Getting Started](#-getting-started)
-- [🔒 Environment Variables](#-environment-variables)
-- [⚙️ Architecture](#️-architecture)
+- [Setting Up kind Cluster](#️-setting-up-kind-cluster)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Architecture](#️-architecture)
 
 ---
 
-## 🛠️ Setting Up kind Cluster
+## Setting Up kind Cluster
 
 Before deploying WeatherKube, you need to set up a local Kubernetes cluster using [`kind`](https://kind.sigs.k8s.io/).
 
@@ -29,7 +29,7 @@ Make sure Docker is running on your machine before you begin.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the repository
 
@@ -40,7 +40,7 @@ cd WeatherKube
 
 ---
 
-## 🔒 Environment Variables
+## Environment Variables
 
 The WeatherKube app requires certain secrets to be set as environment variables. These secrets are used to store sensitive information such as database passwords and API keys.
 
@@ -89,7 +89,7 @@ kubectl create secret tls weatherapp-ui-tls-cert \
 
 ---
 
-## ⚙️ Architecture
+## Architecture
 
 The WeatherKube app follows a microservices architecture and runs on Kubernetes. It consists of several services, including:
 
